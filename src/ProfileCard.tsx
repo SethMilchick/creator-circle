@@ -1,6 +1,12 @@
 import Button from './Button';
+import type { Profile } from './types';
 
-export default function ProfileCard({ item, handleToggle }) {
+type ProfileCardProps = {
+  item: Profile;
+  handleToggle: (id: string) => void;
+};
+
+export default function ProfileCard({ item, handleToggle }: ProfileCardProps) {
   return (
     <li className="profile-card">
       <div className="profile-card__top">
@@ -24,7 +30,9 @@ export default function ProfileCard({ item, handleToggle }) {
       </div>
 
       <Button
-        className={`button ${item.followed ? 'button--following' : 'button--follow'}`}
+        className={`button ${
+          item.followed ? 'button--following' : 'button--follow'
+        }`}
         type="button"
         onClick={() => handleToggle(item.id)}
       >

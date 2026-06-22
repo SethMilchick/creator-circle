@@ -1,9 +1,10 @@
+import { useState, type FormEvent } from 'react';
 import CreateProfile from './CreateProfile';
-import './index.scss';
-import { useState } from 'react';
 import ProfileList from './ProfileList';
 import CountFollowers from './CountFollowers';
-const initialCards = [
+import type { Profile } from './types';
+
+const initialCards: Profile[] = [
   {
     id: crypto.randomUUID(),
     image: 'https://i.pravatar.cc/48?u=118836',
@@ -23,17 +24,17 @@ const initialCards = [
 ];
 
 export default function App() {
-  const [profileCards, setProfileCards] = useState(initialCards);
+  const [profileCards, setProfileCards] = useState<Profile[]>(initialCards);
   const [name, setName] = useState('');
   const [job, setJob] = useState('');
   const [hobby, setHobby] = useState('');
 
-  function handleSubmit(e) {
+  function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
     if (!name || !job || !hobby) return;
 
-    const newCard = {
+    const newCard: Profile = {
       id: crypto.randomUUID(),
       image: `https://i.pravatar.cc/96?u=${Date.now()}`,
       name,
@@ -49,7 +50,7 @@ export default function App() {
     setHobby('');
   }
 
-  function handleToggle(id) {
+  function handleToggle(id: string) {
     setProfileCards((cards) =>
       cards.map((card) =>
         card.id === id ? { ...card, followed: !card.followed } : card,

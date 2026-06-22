@@ -1,4 +1,15 @@
+import type { Dispatch, FormEvent, SetStateAction } from 'react';
 import Button from './Button';
+
+type CreateProfileProps = {
+  handleSubmit: (e: FormEvent<HTMLFormElement>) => void;
+  name: string;
+  setName: Dispatch<SetStateAction<string>>;
+  job: string;
+  setJob: Dispatch<SetStateAction<string>>;
+  hobby: string;
+  setHobby: Dispatch<SetStateAction<string>>;
+};
 
 export default function CreateProfile({
   handleSubmit,
@@ -8,7 +19,7 @@ export default function CreateProfile({
   setJob,
   hobby,
   setHobby,
-}) {
+}: CreateProfileProps) {
   return (
     <section className="profile-form">
       <div className="profile-form__header">
@@ -20,8 +31,11 @@ export default function CreateProfile({
 
       <form className="profile-form__body" onSubmit={handleSubmit}>
         <div className="profile-form__group">
-          <label className="profile-form__label">Your name</label>
+          <label className="profile-form__label" htmlFor="name">
+            Your name
+          </label>
           <input
+            id="name"
             className="profile-form__input"
             type="text"
             placeholder="John Smith..."
@@ -31,8 +45,11 @@ export default function CreateProfile({
         </div>
 
         <div className="profile-form__group">
-          <label className="profile-form__label">Your job</label>
+          <label className="profile-form__label" htmlFor="job">
+            Your job
+          </label>
           <input
+            id="job"
             className="profile-form__input"
             type="text"
             placeholder="Carpenter..."
@@ -42,8 +59,11 @@ export default function CreateProfile({
         </div>
 
         <div className="profile-form__group">
-          <label className="profile-form__label">Your hobby</label>
+          <label className="profile-form__label" htmlFor="hobby">
+            Your hobby
+          </label>
           <input
+            id="hobby"
             className="profile-form__input"
             type="text"
             placeholder="Climbing..."
